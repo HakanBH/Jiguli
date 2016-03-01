@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+img{
+	margin-right:7px !important;
+	margin-top:7px !important; 
+}
+
+.font{
+	font-family: "Open Sans",Arial,sans-serif;
+	font-size: 1.4em;
+    font-weight: 200;
+    text-shadow: 1px 1px 1px #000;
+    font-weight: 600;
+}
