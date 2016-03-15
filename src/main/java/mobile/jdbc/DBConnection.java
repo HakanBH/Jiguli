@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	private static final String db_url = "jdbc:mysql://localhost:3306/mobile?user=root?autoReconnect=true&useSSL=false";
+	private static final String db_url = "jdbc:mysql://localhost:3306/jiguli.bg?user=root?autoReconnect=true&useSSL=false";
 	private static final String user = "root";
-	private static final String pass = "asd";
+	private static final String pass = "*********";
 
 	private static DBConnection instance = null;
 	private Connection connection;
@@ -24,11 +24,10 @@ public class DBConnection {
 	}
 
 	public static DBConnection getInstance() {
-
 		synchronized (DBConnection.class) {
 			if (instance == null) {
+				instance = new DBConnection();
 			}
-			instance = new DBConnection();
 		}
 		return instance;
 	}

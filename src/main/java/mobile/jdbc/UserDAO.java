@@ -5,86 +5,88 @@ import mobile.model.*;
 
 public class UserDAO implements IUserDAO {
 
-	@Override
-	public boolean hasEmail(String email) {
-		Connection connection = DBConnection.getInstance().getConnection();
-		boolean hasEmail = false;
+	private static final String LOGIN_QUERY = "select * from users where email like ? and password like ?";
+	private static final String INSERT_USER_QUERY = "insert into users values(null, ?,?,?,?,?);";
+	private static final String SELECT_USER_BY_ID = "select * from users where user_id = ?";
+	private static final String CHECK_EMAIL_QUERY = "select email from users where email like ?";
 
-		PreparedStatement checkEmail;
-		try {
-			checkEmail = connection.prepareStatement("select email from users where email like ?");
+	@Override
+	public boolean hasEmail(String email) throws Exception {
+		boolean hasEmail = false;
+		try (Connection connection = DBConnection.getInstance().getConnection();
+				PreparedStatement checkEmail = connection.prepareStatement(CHECK_EMAIL_QUERY)) {
+
 			checkEmail.setString(1, email);
 			ResultSet res = checkEmail.executeQuery();
 			if (res.next()) {
 				hasEmail = true;
-				System.out.println("Регистрация с този Е-мейл вече съществува!");
+				System.out.println("РўРѕР·Рё Р•-РјРµР№Р» Рµ РІРµС‡Рµ Р·Р°РµС‚. РњРѕР»СЏ РїСЂРѕР±РІР°Р№С‚Рµ РѕС‚РЅРѕРІРѕ.");
 			}
-	
+			return hasEmail;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new Exception("nz");
 		}
-		return hasEmail;
 	}
 
 	@Override
 	public User getUserByID(int userID) throws Exception {
-		Connection connection = DBConnection.getInstance().getConnection();
-		try {
-			PreparedStatement searchByID = connection.prepareStatement(
-					"select * from users where user_id = ?");
+		try (Connection connection = DBConnection.getInstance().getConnection();
+				PreparedStatement searchByID = connection.prepareStatement(SELECT_USER_BY_ID)) {
 			searchByID.setInt(1, userID);
 			ResultSet result = searchByID.executeQuery();
 			result.next();
-			
-			return new User(result.getString(1),result.getString(2),result.getString(3),
-					result.getString(4),result.getString(5));
+
+			return new User(result.getString(2), result.getString(3), result.getString(4), result.getString(5),
+					result.getString(6));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new Exception("User with that id cannot be found.", e);
 		}
 	}
 
-	public int register(User u) throws Exception {
-		if (u != null || hasEmail(u.getEmail())) {
-			Connection connection = DBConnection.getInstance().getConnection();
-			try {
-				PreparedStatement register = connection.prepareStatement("insert into users values(null, ?,?,?,?,?);",
-						PreparedStatement.RETURN_GENERATED_KEYS);
+	@Override
+	public void register(User u) throws Exception {
+		if (u != null) {
+			try (Connection connection = DBConnection.getInstance().getConnection();
+					PreparedStatement register = connection.prepareStatement(INSERT_USER_QUERY,
+							PreparedStatement.RETURN_GENERATED_KEYS);) {
 				register.setString(1, u.getEmail());
 				register.setString(2, u.getPassword());
 				register.setString(3, u.getFirstName());
 				register.setString(4, u.getLastName());
-				register.setString(5, u.getLocation());
+				register.setString(5, u.getRegion());
 				register.executeUpdate();
 
 				ResultSet res = register.getGeneratedKeys();
 				res.next();
-				return res.getInt(1);
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new Exception("Error. Please try again", e);
 			}
 		} else {
-			throw new Exception("That email is already taken");
+			throw new Exception("Sorry! An error accured. Please try again.");
 		}
 	}
 
 	@Override
 	public int login(String email, String password) throws Exception {
-		Connection connection = DBConnection.getInstance().getConnection();
-		try {
-			PreparedStatement login = connection.prepareStatement(
-					"select email from users where email like ? and password like ?", PreparedStatement.RETURN_GENERATED_KEYS);
+		if (email == null || password == null) {
+			throw new Exception("Sorry. An error accured. Please try again.");
+		}
+		try (Connection connection = DBConnection.getInstance().getConnection();
+				PreparedStatement login = connection.prepareStatement(LOGIN_QUERY);) {
 			login.setString(1, email);
 			login.setString(2, password);
-			
-			ResultSet res = login.getGeneratedKeys();
+
+			ResultSet res = login.executeQuery();
 			res.next();
-			return res.getInt(1);
+			int userId = res.getInt(1);
+
+			return userId;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new Exception("Въвели сте невалиден Е-мейл или парола!", e);
+			throw new Exception("Invalid email or password!", e);
 		}
 	}
 }

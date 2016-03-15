@@ -1,13 +1,13 @@
 package mobile.model;
 
 public class Car extends MotorVehicle {
-
+	
 	public Car(String cond, String brand, String model, String currency, String color, 
-			Integer price, String engine, String gearbox, String category, 
-			Integer mileage, Integer power, Integer year) 
+			int price, String engine, String gearbox, String category, 
+			int mileage, int power, int year, String month) 
 	{
 		super(cond, brand, model, currency, color, price, engine, gearbox, category, 
-				mileage, power, year);
+				mileage, power, year, month);
 	}
 }
 

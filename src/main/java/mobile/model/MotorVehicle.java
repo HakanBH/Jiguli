@@ -1,25 +1,22 @@
 package mobile.model;
 
 public abstract class MotorVehicle extends Vehicle{
-	
+	private String engineType;
+	private String gearboxType;
+	private String category;
+	private int mileage;
+	private int power;
+
 	public MotorVehicle(String cond, String brand, String model, String currency, String color, Integer price, 
-			String engine, String gearbox, String category, Integer mileage, Integer power , Integer year)
+			String engine, String gearbox, String category, int mileage, int power , int year, String month)
 	{
-		super(cond, brand, model, currency, color, price);
+		super(cond, brand, model, currency, color, price, year, month);
 		setEngineType(engine);
 		setGearboxType(gearbox);
 		setCategory(category);
 		setMileage(mileage);
 		setPower(power);
-		setYear(year);
 	}
-	
-	private String engineType;
-	private String gearboxType;
-	private String category;
-	private Integer mileage;
-	private Integer power;
-	private Integer year;
 	
 	public String getEngineType() {
 		return engineType;
@@ -30,15 +27,13 @@ public abstract class MotorVehicle extends Vehicle{
 	public String getCategory() {
 		return category;
 	}
-	public Integer getMileage() {
+	public int getMileage() {
 		return mileage;
 	}
-	public Integer getPower() {
+	public int getPower() {
 		return power;
 	}
-	public Integer getYear() {
-		return year;
-	}
+
 	
 	public void setEngineType(String engineType) {
 		if(engineType != null && !engineType.isEmpty()){
@@ -57,20 +52,16 @@ public abstract class MotorVehicle extends Vehicle{
 		}
 	}
 	
-	public void setMileage(Integer mileage) {
-		if(power.intValue() > 0){
+	public void setMileage(int mileage) {
+		if(mileage > 0){
 			this.mileage = mileage;
 		}
 	}
 	
-	public void setPower(Integer power) {
-		if(power.intValue()>0){
+	public void setPower(int power) {
+		if(power >0){
 			this.power = power;
 		}
 	}
-	
-	public void setYear(Integer year) {
-		//няма нужда от проверка, т.к. потребителя може да избира само от списък
-		this.year = year;
-	}
+
 }

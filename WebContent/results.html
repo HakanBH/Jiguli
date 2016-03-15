@@ -13,54 +13,46 @@
 </head>
 
 <body>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-	<header>
-		<div class="container">
-			<nav class="navbar navbar-default" style="background-color: white"
-				role="navigation">
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="nav nav-justified nav-pills">
-							<li class="active"><a href="#">Автомобили</a></li>
-							<li><a href="#">Джипове</a></li>
-							<li><a href="#">Бусове</a></li>
-							<li><a href="#">Камиони</a></li>
-							<li><a href="#">Мотоциклети</a></li>
-							<li><a href="#">Селскостопански</a></li>
-							<li><a href="#">Индустриални</a></li>
-							<li><a href="#">Кари</a></li>
-							<li><a href="#">Каравани</a></li>
-							<li><a href="#">Ремаркета</a></li>
-							<li><a href="#">Велосипеди</a></li>
-						</ul>
-					</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<header>
+	<div class = "container">
+		<nav class = "navbar navbar-default" style="background-color:white" role = "navigation">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class = "nav nav-justified nav-pills">
+				 	  	<li class="active"><a href="#" >Автомобили</a></li>
+				 	  	<li><a href="#" >Джипове</a></li>
+						<li><a href="#" >Бусове</a></li>
+				 		<li><a href="#" >Камиони</a></li>
+				 		<li><a href="#" >Мотоциклети</a></li>
+				 		<li><a href="#" >Селскостопански</a></li>
+				  	 	<li><a href="#" >Индустриални</a></li>
+				  		<li><a href="#" >Кари</a></li>
+				   		<li><a href="#" >Каравани</a> </li>
+				   		<li><a href="#" >Ремаркета</a></li>
+				   		<li><a href="#" >Велосипеди</a></li>
+					</ul>
 				</div>
-				<div class="row">
-					<div class="col-md-5">
-						<a href="#" style="float: right"> <img alt="Logo"
-							src="images/logo.png">
-						</a>
-					</div>
-					<div class="col-md-7" style="margin-top: 20px; margin-bottom: 10px">
-						<form class="row navbar-form navbar-left form-inline" role="form">
-							<div class="form-group">
-								<label class="sr-only" for="Email">Email</label> <input
-									type="email" class="form-control" id="Email"
-									placeholder="Email" autofocus="" required="">
-							</div>
-							<div class="form-group">
-								<label class="sr-only" for="Password">Password</label> <input
-									type="password" class="form-control" id="Password"
-									placeholder="Парола" required="">
-							</div>
-							<button type="submit" class="btn btn-success">Вход</button>
+			</div>
+			<div class="row">	
+				<div class = "col-md-5">
+					<a href="#" style = "float:right"> <img alt = "Logo" src="images/logo.png"> </a>
+		 		</div>
+		 		<div class="col-md-7" style="margin-top: 15px;">
+					<div class="row">
+						<form action="Login" method="POST" class="row navbar-form navbar-left form-inline" target="_blank">
+							<input	type="email" name="email" class="form-control" id="email" placeholder="Е-мейл" required
+								oninvalid="this.setCustomValidity('Моля въведете валиден е-мейл.')" oninput="setCustomValidity('')">
+							<input type="password" name="pass" id="pass" class="form-control"  placeholder="Парола" required
+								oninvalid="this.setCustomValidity('Моля въведете парола.')" oninput="setCustomValidity('')" >
+							<input type="submit" class="btn btn-success form-control" value="Вход">
 						</form>
+					</div>
+					<div class="row" style="margin-left: 0px; margin-top:5px;">
 						<ul class="row nav navbar-left nav-pills">
 							<li><a href="main.html">Начало</a>
 							<li class="active"><a href="search.html">Търсене</a>
@@ -71,10 +63,11 @@
 							<li><a href="#">Моето мобиле</a>
 						</ul>
 					</div>
-				</div>
-			</nav>
-		</div>
-	</header>
+		  		</div>
+		  	</div>
+		</nav>
+	</div>
+</header>
 	
 	<div class="container panel panel-primary">
 		<div class="row">

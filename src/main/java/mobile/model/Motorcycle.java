@@ -2,25 +2,25 @@ package mobile.model;
 
 public class Motorcycle extends MotorVehicle {
 	
-	private Integer cubage;
-	private Integer engineTacts;
+	private int cubage;
+	private int engineTacts;
 	private String coolingType;
 
-	public Motorcycle(String cond, String brand, String model, String currency, String color, Integer price,
-			String engine, String gearbox, String category, Integer mileage, Integer power, Integer year,
-			Integer cubage, Integer tacts, String cooling)
+	public Motorcycle(String cond, String brand, String model, String currency, String color, int price,
+			String engine, String gearbox, String category, int mileage, int power, int year, String month,
+			int cubage, int tacts, String cooling)
 	{
-		super(cond, brand, model, currency, color, price, engine, gearbox, category, mileage, power, year);
+		super(cond, brand, model, currency, color, price, engine, gearbox, category, mileage, power, year, month);
 		setCubage(cubage);
 		setEngineTacts(tacts);
 		setCoolingType(cooling);
 	}
 
-	public Integer getCubage() {
+	public int getCubage() {
 		return cubage;
 	}
 	
-	public Integer getEngineTacts(){
+	public int getEngineTacts(){
 		return engineTacts;
 	}
 	
@@ -28,13 +28,13 @@ public class Motorcycle extends MotorVehicle {
 		return coolingType;
 	}
 	
-	public void setCubage(Integer cubage) {
+	public void setCubage(int cubage) {
 		if (cubage > 0) {
 			this.cubage = cubage;
 		}
 	}
 	
-	public void setEngineTacts(Integer engineTacts) {
+	public void setEngineTacts(int engineTacts) {
 		if (engineTacts > 0) {
 			this.engineTacts = engineTacts;
 		}

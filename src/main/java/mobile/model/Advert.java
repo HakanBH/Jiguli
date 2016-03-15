@@ -3,18 +3,19 @@ package mobile.model;
 public class Advert {
 	private Vehicle vehicle;
 	private String phoneNumber;
+	private String email;
 	private String region;
 	private String city;
 	private Integer expirationTime;
 	private String extraInfo;
 	
-	public Advert(Vehicle vehicle, String phoneNumber, String region, String city, Integer expirtionTime) {
+	public Advert(Vehicle vehicle, String phoneNumber, String email, String region, String city, int expirtionTime) {
 		setCity(city);
 		setExpirationTime(expirtionTime);
+		setEmail(email);
 		setPhoneNumber(phoneNumber);
 		setRegion(region);
 		setCity(city);
-		
 		setVehicle(vehicle);
 	}
 	
@@ -25,13 +26,16 @@ public class Advert {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+	public String getEmail(){
+		return email;
+	}
 	public String getRegion() {
 		return region;
 	}
 	public String getCity() {
 		return city;
 	}
-	public Integer getExpirationTime() {
+	public int getExpirationTime() {
 		return expirationTime;
 	}
 	public String getExtraInfo() {
@@ -50,6 +54,13 @@ public class Advert {
 			this.phoneNumber = phoneNumber;
 		}
 	}
+	
+	public void setEmail(String email) {
+		if(email!=null && !email.isEmpty()){
+			this.email = email;
+		}
+	}
+	
 	public void setRegion(String region) {	
 		if(region!=null && !region.isEmpty()){
 			this.region = region;
@@ -61,7 +72,7 @@ public class Advert {
 			this.city = city;
 		}
 	}
-	public void setExpirationTime(Integer expirationTime) {
+	public void setExpirationTime(int expirationTime) {
 		if(expirationTime > 0){
 			this.expirationTime = expirationTime;
 		}

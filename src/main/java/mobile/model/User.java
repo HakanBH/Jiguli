@@ -5,16 +5,15 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String location;
+	private String region;
 
-	public User(String email, String pass, String firstName, String lastName, String location){
+	public User(String email, String pass, String firstName, String lastName, String region){
 		setEmail(email);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPassword(pass);
-		setLocation(location);
+		setRegion(region);
 	}
-	
 	
 	public String getEmail() {
 		return email;
@@ -32,8 +31,8 @@ public class User {
 		return lastName;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getRegion() {
+		return region;
 	}
 
 	public void setEmail(String email) {
@@ -59,12 +58,21 @@ public class User {
 			this.lastName = lastName;
 		}
 	}
-	public void setLocation(String location) {
-		if(location!=null && !location.isEmpty()){
-			this.location = location;	
+	public void setRegion(String region) {
+		if(region!=null && !region.isEmpty()){
+			this.region = region;	
 		}
 	}
 
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Email: " + email);
+		builder.append("\nPassword: " + password);
+		builder.append("\nFirst Name: " + firstName);
+		builder.append("\nLast Name: " + lastName);
+		builder.append("\nRegion: " + region);
+		return builder.toString();	
+	}
 
 }

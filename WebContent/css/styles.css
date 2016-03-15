@@ -1,14 +1,37 @@
 @CHARSET "UTF-8";
 
-img{
-	margin-right:7px !important;
-	margin-top:7px !important; 
+#field {
+	margin-left: .5em;
+	float: left;
 }
 
-.font{
-	font-family: "Open Sans",Arial,sans-serif;
-	font-size: 1.4em;
-    font-weight: 200;
-    text-shadow: 1px 1px 1px #000;
-    font-weight: 600;
+#field, label {
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+
+br {
+	clear: both;
+}
+
+input {
+	border: 1px solid black;
+}
+
+input.error {
+	border: 1px solid red;
+}
+
+label.error {
+	background: url('images/unchecked.gif') no-repeat;
+	padding-left: 16px;
+	margin-left: .3em;
+}
+
+label.valid {
+	background: url('images/checked.gif') no-repeat;
+	display: block;
+	width: 16px;
+	height: 16px;
 }
