@@ -3,7 +3,6 @@ package mobile.jdbc;
 import mobile.model.*;
 
 public interface IUserDAO {
-	public boolean hasEmail(String email) throws Exception;
 	
 	public User getUserByID(int userID) throws Exception;
 	

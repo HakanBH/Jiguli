@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import mobile.jdbc.UserDAO;
 import mobile.model.User;
@@ -31,18 +33,15 @@ public class Login extends HttpServlet {
 		
 		try {
 			int userID = userDao.login(email, password);
-			User loggedUser = userDao.getUserByID(userID);
 			
-			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Здравей "  + loggedUser.getFirstName() +  ". Жигули.бг ти пожелава приятно сърфиране. ')");  
-			out.println("window.location.href = \"main.html\";");
-			out.println("</script>");
+			HttpSession session = request.getSession();
 			
-		} catch (Exception e) {
-			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Грашна парола или Е-мейл.');");
-			out.println("window.location.href = \"facebook.com\";");
-			out.println("</script>");
+			session.setAttribute("UserID", userID);
+			
+			response.sendRedirect("./main.jsp");
+		} 
+		catch (Exception e) {
+			response.sendRedirect("./main.jsp");
 		}
 	}
 }

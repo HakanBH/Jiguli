@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
 	private static final String db_url = "jdbc:mysql://localhost:3306/jiguli.bg?user=root?autoReconnect=true&useSSL=false";
 	private static final String user = "root";
-	private static final String pass = "*********";
+	private static final String pass = "";
 
 	private static DBConnection instance = null;
 	private Connection connection;

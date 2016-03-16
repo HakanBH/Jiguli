@@ -4,6 +4,7 @@ import java.sql.*;
 import mobile.model.*;
 
 public class UserDAO implements IUserDAO {
+	Connection connection = DBConnection.getInstance().getConnection();
 
 	private static final String LOGIN_QUERY = "select * from users where email like ? and password like ?";
 	private static final String INSERT_USER_QUERY = "insert into users values(null, ?,?,?,?,?);";
@@ -11,28 +12,9 @@ public class UserDAO implements IUserDAO {
 	private static final String CHECK_EMAIL_QUERY = "select email from users where email like ?";
 
 	@Override
-	public boolean hasEmail(String email) throws Exception {
-		boolean hasEmail = false;
-		try (Connection connection = DBConnection.getInstance().getConnection();
-				PreparedStatement checkEmail = connection.prepareStatement(CHECK_EMAIL_QUERY)) {
-
-			checkEmail.setString(1, email);
-			ResultSet res = checkEmail.executeQuery();
-			if (res.next()) {
-				hasEmail = true;
-				System.out.println("Този Е-мейл е вече зает. Моля пробвайте отново.");
-			}
-			return hasEmail;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new Exception("nz");
-		}
-	}
-
-	@Override
 	public User getUserByID(int userID) throws Exception {
-		try (Connection connection = DBConnection.getInstance().getConnection();
-				PreparedStatement searchByID = connection.prepareStatement(SELECT_USER_BY_ID)) {
+		Connection connection = DBConnection.getInstance().getConnection();
+		try (PreparedStatement searchByID = connection.prepareStatement(SELECT_USER_BY_ID)) {
 			searchByID.setInt(1, userID);
 			ResultSet result = searchByID.executeQuery();
 			result.next();
@@ -74,15 +56,15 @@ public class UserDAO implements IUserDAO {
 		if (email == null || password == null) {
 			throw new Exception("Sorry. An error accured. Please try again.");
 		}
-		try (Connection connection = DBConnection.getInstance().getConnection();
-				PreparedStatement login = connection.prepareStatement(LOGIN_QUERY);) {
+		Connection connection = DBConnection.getInstance().getConnection();
+		try {
+			PreparedStatement login = connection.prepareStatement(LOGIN_QUERY);
 			login.setString(1, email);
 			login.setString(2, password);
 
 			ResultSet res = login.executeQuery();
 			res.next();
 			int userId = res.getInt(1);
-
 			return userId;
 		} catch (SQLException e) {
 			e.printStackTrace();
