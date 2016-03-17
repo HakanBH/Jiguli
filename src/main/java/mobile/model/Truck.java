@@ -14,7 +14,11 @@ public class Truck extends MotorVehicle {
 		setNumberOfAxels(axels);
 		setLoadCapacity(load);
 	}
-
+	
+	@Override
+	public String getCategory() {
+		return "trucks";
+	}
 	
 	public int getNumberOfSeats() {
 		return numberOfSeats;

@@ -3,17 +3,17 @@ package mobile.model;
 public abstract class MotorVehicle extends Vehicle{
 	private String engineType;
 	private String gearboxType;
-	private String category;
+	private String subcategory;
 	private int mileage;
 	private int power;
 
 	public MotorVehicle(String cond, String brand, String model, String currency, String color, Integer price, 
-			String engine, String gearbox, String category, int mileage, int power , int year, String month)
+			String engine, String gearbox, String subcategory, int mileage, int power , int year, String month)
 	{
 		super(cond, brand, model, currency, color, price, year, month);
 		setEngineType(engine);
 		setGearboxType(gearbox);
-		setCategory(category);
+		setSubcategory(subcategory);
 		setMileage(mileage);
 		setPower(power);
 	}
@@ -24,8 +24,8 @@ public abstract class MotorVehicle extends Vehicle{
 	public String getGearboxType() {
 		return gearboxType;
 	}
-	public String getCategory() {
-		return category;
+	public String getSubcategory() {
+		return subcategory;
 	}
 	public int getMileage() {
 		return mileage;
@@ -46,9 +46,9 @@ public abstract class MotorVehicle extends Vehicle{
 			this.gearboxType = gearboxType;
 		}
 	}
-	public void setCategory(String category) {
-		if(category!=null && !category.isEmpty()){
-			this.category = category;
+	public void setSubcategory(String subcategory) {
+		if(subcategory!=null && !subcategory.isEmpty()){
+			this.subcategory = subcategory;
 		}
 	}
 	

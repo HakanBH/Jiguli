@@ -29,12 +29,11 @@
 		<div class="search-form">	
 			<label class="control-label" for="category">Основна категория</label>
 			<select id="category" name="category" class="form-control">
-				<option value="all">Всички</option>
-				<option value="car">Автомобили</option>
+				<option value="car" selected>Автомобили</option>
 				<option value="jeep">Джипове</option>
 				<option value="bus">Бусове</option>
 				<option value="truck">Камиони</option>
-				<option value="moto">Мотоциклети</option>
+				<option value="moto" >Мотоциклети</option>
 				<option value="аgro">Селскостопански</option>
 				<option value="industr">Индустриални</option>
 				<option value="carry">Кари</option>

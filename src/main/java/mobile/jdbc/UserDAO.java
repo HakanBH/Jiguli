@@ -4,13 +4,22 @@ import java.sql.*;
 import mobile.model.*;
 
 public class UserDAO implements IUserDAO {
-	Connection connection = DBConnection.getInstance().getConnection();
-
 	private static final String LOGIN_QUERY = "select * from users where email like ? and password like ?";
 	private static final String INSERT_USER_QUERY = "insert into users values(null, ?,?,?,?,?);";
 	private static final String SELECT_USER_BY_ID = "select * from users where user_id = ?";
-	private static final String CHECK_EMAIL_QUERY = "select email from users where email like ?";
-
+	Connection connection = DBConnection.getInstance().getConnection();
+	
+	private static UserDAO instance = null;
+	
+	private UserDAO(){}
+	
+	public synchronized static UserDAO getUserDAO(){
+		if(instance == null){
+			return new UserDAO();
+		}
+		return instance;
+	}
+	
 	@Override
 	public User getUserByID(int userID) throws Exception {
 		Connection connection = DBConnection.getInstance().getConnection();

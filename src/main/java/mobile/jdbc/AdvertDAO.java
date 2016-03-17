@@ -38,8 +38,10 @@ public class AdvertDAO implements IAdvertDAO {
 
 	@Override
 	public void addExtras(List<Extra> extras, Vehicle v) {
-
+		
 	}
+	
+	
 
 	/**
 	 * Inserts the given {@link Vehicle} into the database. Vehicle's id is
@@ -90,5 +92,41 @@ public class AdvertDAO implements IAdvertDAO {
 			}
 		}
 		connection.setAutoCommit(true);
+	}
+	
+	public int searchCar(Car c, int minPrice, int maxPrice, int minYear, int maxYear){
+		try {
+			PreparedStatement searchCar = connection.prepareStatement(
+					"select V.vehicle_id from cars C "
+					+ "join motor_vehicles M on (C.car_id = M.motor_vehicle_id)"
+					+ "join vehicles V on (C.car_id = V.vehicle_id)"
+					+ "  where (M.engine = ?) and (M.gearbox = ?) and (V.brand = ?) and "
+					+ "    (V.model = ?) and (V.condition = ?) and"
+					+ "    (V.year between ? and ?) and (V.price between ? and ?);");
+			searchCar.setString(1, c.getEngineType());
+			searchCar.setString(2, c.getGearboxType());
+			searchCar.setString(3, c.getCondition());
+			searchCar.setString(4, c.getBrand());
+			searchCar.setString(5, c.getModel());
+			searchCar.setInt(6, minYear);
+			searchCar.setInt(7, maxYear);
+			searchCar.setInt(8, minPrice);
+			searchCar.setInt(9, maxPrice);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;	
+	}
+	
+	
+	@Override
+	public int searchVehicle(Vehicle v) throws SQLException {
+		String mainCategory = v.getCategory();
+		PreparedStatement search = connection.prepareStatement
+				("select vehicle_id from ? C "
+				+"join on motor_vehicles M on(C." + mainCategory + "_id);
+		return 0;
 	}
 }

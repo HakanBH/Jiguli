@@ -52,30 +52,18 @@
 				</div>
 			</div>
 			<div class="row carinfo" >
-				<div class="col-md-6">
-					<b>Пробег: </b>	71,000 км.	<br>
-				</div>
-				<div class="col-md-6">
-					<b>Цвят: </b> Златен металик
-				</div>
+				<div class="col-md-6"> <b>Пробег: </b>	71,000 км.	<br> </div>
+				<div class="col-md-6"> <b>Цвят: </b> Златен металик </div>
 			</div>
 	
 			<div class="row carinfo">
-				<div class="col-md-6">
-					<b> Произведен: </b>	Януари 2006г. <br>
-				</div>
-				<div class="col-md-6">
-					<b> Кубатура: </b>  1600 см3
-				</div>
+				<div class="col-md-6"> <b> Произведен: </b>	Януари 2006г. <br></div>
+				<div class="col-md-6"> <b> Кубатура: </b>  1600 см3</div>
 			</div>
 			
-			<div class="row carinfo"	>
-				<div class="col-md-6">
-					<b> Тип двигател: </b>	Бензинов	<br>				
-				</div>
-				<div class="col-md-6">
-					<b> Мощност: </b> 116 к.с. <br>		
-				</div>
+			<div class="row carinfo">
+				<div class="col-md-6"> <b> Тип двигател: </b>Бензинов<br> </div>
+				<div class="col-md-6"> <b> Мощност: </b> 116 к.с. <br>	</div>
 			</div>
 				
 			<h3 class="myh3">Особености и Екстри</h3>

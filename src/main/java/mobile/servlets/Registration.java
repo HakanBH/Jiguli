@@ -29,15 +29,16 @@ public class Registration extends HttpServlet {
 		String lastName = request.getParameter("last_name");
 
 		User newUser = new User(email,password,firstName,lastName,region);
-		UserDAO userDao = new UserDAO();
+		IUserDAO userDao = UserDAO.getUserDAO();
 
 		PrintWriter out = response.getWriter();
 		
 		try {
 			userDao.register(newUser);
 			out.println("<script type=\"text/javascript\">");  
-			out.println("alert('Регистрацията ви беше успешна.');");  
+			out.println("alert('Регистрацията ви беше успешна. Можете да се логнете.');");  
 			out.println("</script>");
+			
 		} catch (Exception e) {
 			out.println("<script type=\"text/javascript\">");  
 			out.println("alert('Вече съществува потребител с този Е-мейл.');");  

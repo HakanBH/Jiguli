@@ -14,7 +14,6 @@ public abstract class Vehicle {
 	private int price;
 	private String month;
 	private int year;
-	
 	private List<Extra> extras;	
 	
 	public Vehicle(String cond, String brand, String model, String currency, String color, int price,
@@ -29,6 +28,8 @@ public abstract class Vehicle {
 		setYear(year);
 		setMonth(month);
 	}
+
+	public abstract String getCategory();
 	
 	public String getCondition() {
 		return condition;

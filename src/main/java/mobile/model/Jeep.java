@@ -7,4 +7,8 @@ public class Jeep extends MotorVehicle{
 		super(cond, brand, model, currency, color, price, engine, gearbox, category, mileage, power, year, month);
 	}
 	
+	@Override
+	public String getCategory() {
+		return "jeeps";
+	}
 }

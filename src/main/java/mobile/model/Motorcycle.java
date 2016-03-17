@@ -15,7 +15,12 @@ public class Motorcycle extends MotorVehicle {
 		setEngineTacts(tacts);
 		setCoolingType(cooling);
 	}
-
+	
+	@Override
+	public String getCategory() {
+		return "motorcycles";
+	}
+	
 	public int getCubage() {
 		return cubage;
 	}

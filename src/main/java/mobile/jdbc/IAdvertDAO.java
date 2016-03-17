@@ -14,5 +14,5 @@ public interface IAdvertDAO {
 	
 	public abstract void addExtras(List<Extra> extras, Vehicle v);
 	
-//	public abstract void uploadPictures();
+	public abstract int searchVehicle(Vehicle v) throws SQLException;
 }

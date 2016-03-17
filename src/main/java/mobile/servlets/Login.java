@@ -1,8 +1,6 @@
 package mobile.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.ProcessBuilder.Redirect;
+import java.io.IOException;   
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import mobile.jdbc.UserDAO;
-import mobile.model.User;
+import mobile.jdbc.*;
+import mobile.model.*;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -22,26 +19,33 @@ public class Login extends HttpServlet {
 	public Login() {
         super();
     }
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 			
 		String email = request.getParameter("email");
 		String password = request.getParameter("pass");
 		
-		UserDAO userDao = new UserDAO();
-		PrintWriter out = response.getWriter();
+		IUserDAO userDao = UserDAO.getUserDAO();
+		
+		String referer = request.getHeader("referer");
 		
 		try {
-			int userID = userDao.login(email, password);
+			int userId = userDao.login(email, password);
+			User u = userDao.getUserByID(userId);
 			
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("UserID", userID);
+			session.setAttribute("userId", userId);
+			session.setAttribute("email", u.getEmail());
+			session.setAttribute("firstName", u.getFirstName());
+			session.setAttribute("lastName", u.getLastName());
+			session.setAttribute("region", u.getRegion());
 			
-			response.sendRedirect("./main.jsp");
+			response.sendRedirect(referer);
 		} 
 		catch (Exception e) {
-			response.sendRedirect("./main.jsp");
+			response.sendRedirect(referer);
 		}
 	}
 }
