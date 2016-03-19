@@ -1,4 +1,4 @@
-# Jiguli
+# Jiguli.bg - a car dealing website.
 
 IT-Talents Assignment:
 Create a website with a functionality similair to Mobile.bg (website for selling/buying all sorts of vehicles).
